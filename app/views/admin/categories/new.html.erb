@@ -1,0 +1,16 @@
+<%= form_for(@category, url: admin_categories_path ) do |f| %>
+  <% if @category.errors.any? %>
+    <h2><%= pluralize(@category.errors.count, "error") %> prohibited this record from being saved:</h2>
+    <ul>
+      <% @category.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end  %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.submit %>
+
+<% end %>

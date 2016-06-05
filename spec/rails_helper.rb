@@ -7,6 +7,12 @@ require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/rails'
 
+  def admin_creator 
+    user = User.create(username: "npisciotta",
+                       password: "password",
+                       role: 1 )
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+  end
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
