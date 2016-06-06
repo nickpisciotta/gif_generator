@@ -37,6 +37,10 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def find_gif(category_name)
+    #you're going to want to put this information into the model.
+    # you could also create a service object that will essentially use a gem like farday to hit the api endpoint
+    # with that being said you can also call that instance of the service object with this logic inside of it to hit the Gif API.
+    # Also look into a gem like figaro to hide your api keys. 
     api_key = "dc6zaTOxFJmzC"
     category_name = category_name.split(" ").join("+")
     url = "http://api.giphy.com/v1/gifs/search?q=#{category_name}&api_key=#{api_key}"
