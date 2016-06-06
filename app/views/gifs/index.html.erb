@@ -1,0 +1,13 @@
+<h1>All Gifs</h1>
+
+<% if current_user.admin? %>
+  <%= link_to "Dashboard", admin_categories_path %>
+<%end  %><br>
+
+<% @gifs.each do |gif|  %>
+  <div class="row">
+    <div class="col-xs-6 col-md-3">
+      <%= image_tag(gif.image_path, class: "thumbnail") %>
+    </div>
+  </div>
+<% end  %>

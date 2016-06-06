@@ -8,12 +8,9 @@
 </head>
 <body>
 
-  <% if current_user %>
-    Welcome, <%= current_user.username %>!
-    <%= link_to "Logout Now", logout_path, method: :delete %>
-  <% else %>
-    <%= link_to "Login Now", login_path %>
-  <% end  %>
+
+
+  <%= render partial: "partials/navbar" %>
 
   <% flash.each do |name, msg| %>
     <%= content_tag :div, msg, :id => "flash_#{name}" %>

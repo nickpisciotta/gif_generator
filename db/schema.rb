@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160605162934) do
+ActiveRecord::Schema.define(version: 20160606051422) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,25 @@ ActiveRecord::Schema.define(version: 20160605162934) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "gifs", force: :cascade do |t|
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "image_path"
+    t.integer  "category_id"
+  end
+
+  add_index "gifs", ["category_id"], name: "index_gifs_on_category_id", using: :btree
+
+  create_table "user_gifs", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "gif_id"
+  end
+
+  add_index "user_gifs", ["gif_id"], name: "index_user_gifs_on_gif_id", using: :btree
+  add_index "user_gifs", ["user_id"], name: "index_user_gifs_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "password_digest"
@@ -30,4 +49,7 @@ ActiveRecord::Schema.define(version: 20160605162934) do
     t.integer  "role",            default: 0
   end
 
+  add_foreign_key "gifs", "categories"
+  add_foreign_key "user_gifs", "gifs"
+  add_foreign_key "user_gifs", "users"
 end

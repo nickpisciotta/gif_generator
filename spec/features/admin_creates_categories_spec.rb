@@ -2,10 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "category creation", type: :feature do
   scenario "logged in admin can create category" do
-    user = User.create(username: "npisciotta",
-                       password: "password",
-                       role: 1 )
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+    admin_creator
 
     visit admin_categories_path
     expect(page).to have_content("All Categories")
