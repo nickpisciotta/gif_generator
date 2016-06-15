@@ -15,10 +15,6 @@ class Admin::CategoriesController < Admin::BaseController
     @category = Category.new
   end
 
-  # def edit
-  #   @category = Category.find(params[:id])
-  # end
-
   def create
     category_name = params[:category][:name]
     gif_url = find_gif(category_name)

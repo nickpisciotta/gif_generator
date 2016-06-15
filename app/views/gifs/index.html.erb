@@ -10,4 +10,6 @@
       <%= image_tag(gif.image_path, class: "thumbnail") %>
     </div>
   </div>
-<% end  %>
+<% end  %><br>
+
+<%= will_paginate @gifs, renderer: BootstrapPagination::Rails %>
